@@ -2,9 +2,10 @@
 
 class Router
 {
-    protected $routes;
-    protected $route;
+    protected $routes; // карта путей
+    protected $route; //запрашиваемый адрес страницы
 
+    //Получаем текущий адрес страницы и получаем массив путей из config
     public function __construct($routes)
     {
         $this->route = $this->getThisUrl();
@@ -14,6 +15,7 @@ class Router
     //Возвращает содержимое нужной страницы
     public function renderPage()
     {
+        //Проверяем карту путей, на наличие указанного адреса и выводим страницу если она есть
         if (array_key_exists($this->route, $this->routes)) {
             include($_SERVER["DOCUMENT_ROOT"] . $this->routes[$this->route]);
             exit();
@@ -22,6 +24,7 @@ class Router
         }
     }
 
+    // Получаем адрес страницы без GET параметров
     public function getThisUrl()
     {
         $route = $_SERVER['REQUEST_URI'];

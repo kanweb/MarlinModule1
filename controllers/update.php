@@ -5,7 +5,7 @@ $validator = new Validator([
     'id' => 'int',
     'title' => 'string'
 ]);
-
+// Обновляем запись
 if ($validator->validate) {
     $db->update('posts', [
         'title' => $_POST["title"],
